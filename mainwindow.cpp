@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include <QVBoxLayout>
 #include <QQmlContext>
+#include <QDebug>
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -35,6 +36,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::loadStream(const QString &link)
 {
+    qDebug() << "start load stream: " << link;
     view.stop();
-    view.setUrl(link);
+    view.load(QUrl(link));
 }

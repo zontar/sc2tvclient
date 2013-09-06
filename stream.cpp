@@ -34,6 +34,6 @@ void Stream::loadFinished(QNetworkReply *reply)
     {
         r.setPattern("src=\"(.*)\"");
         if(r.indexIn(page)==-1) return;
-        emit streamReady(r.cap(1));
+        emit streamReady(r.cap(1)+"&autostart=1");
     }
 }
