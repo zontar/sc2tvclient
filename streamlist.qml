@@ -12,7 +12,7 @@ Rectangle {
             width: 280
             height: 190
             color: "#002e76"
-            anchors.margins: 5
+            anchors.margins: 0
             anchors.verticalCenter: parent.verticalCenter
             visible: true
             scale:  itemArea.containsMouse ? 1.2 : 1.0
@@ -115,8 +115,8 @@ Rectangle {
     ListView {
         id: streamList
         anchors.fill: parent
-        anchors.margins: 10
-        spacing: 10
+        anchors.margins: 0
+        spacing: 4
         model: streammodel
         delegate: streamListItemDelegate
         clip: true

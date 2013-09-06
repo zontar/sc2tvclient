@@ -4,5 +4,6 @@
     </qresource>
     <qresource prefix="/image">
         <file>thumb-error.jpg</file>
+        <file>background.jpg</file>
     </qresource>
 </RCC>

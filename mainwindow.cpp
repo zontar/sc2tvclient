@@ -1,14 +1,13 @@
 #include "mainwindow.h"
 #include <QVBoxLayout>
 #include <QQmlContext>
+
 #include <QDebug>
 
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
 {
-
-    QVBoxLayout *layout = new QVBoxLayout();
     view.settings()->setAttribute(QWebSettings::PluginsEnabled,true);
     QObject::connect(&ripper,SIGNAL(funStreamFound(StreamPreviewItem)),&streamModel,SLOT(addItem(StreamPreviewItem)));
     QObject::connect(&streamModel,SIGNAL(showStream(QString)),this,SLOT(loadStream(QString)));
@@ -16,16 +15,16 @@ MainWindow::MainWindow(QWidget *parent) :
     qml.rootContext()->setContextProperty("streammodel", &streamModel);
     qml.setResizeMode(QQuickView::SizeRootObjectToView);
     qmlWidget = QWidget::createWindowContainer(&qml);
-    qmlWidget->setFixedHeight(250);
+    qmlWidget->setFixedHeight(240);
+    splitter.addWidget(&view);
+    splitter.addWidget(qmlWidget);
+    splitter.setStyleSheet("QSplitter{\nborder-image: url(:/image/background.jpg);\n}\n\n \
+                           QSplitterHandle{\nbackground-color: #82817e;\nwidth: 5px;\nheight: 5px;\n}\n\n \
+                           QWebView{\nbackground-color: rgba(0, 0, 0,0);\n}\n");
+    splitter.setOrientation(Qt::Vertical);
 
-    layout->addWidget(&view);
-    layout->addWidget(qmlWidget);
-    mainWidget.setLayout(layout);
-    QPalette p(palette());
-    p.setColor(QPalette::Background, Qt::black);
-    mainWidget.setAutoFillBackground(true);
-    mainWidget.setPalette(p);
-    setCentralWidget(&mainWidget);
+    setCentralWidget(&splitter);
+ //   setWindowOpacity(0.5);
     ripper.load();
 }
 

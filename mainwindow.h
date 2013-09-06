@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QQuickView>
 #include <QWebView>
+#include <QSplitter>
 #include "streampreviewmodel.h"
 #include "streamripper.h"
 
@@ -20,7 +21,7 @@ public:
     ~MainWindow();
     
 private:
-    QWidget mainWidget;
+    QSplitter splitter;
     QQuickView qml;
     QWebView view;
     QWidget *qmlWidget;
