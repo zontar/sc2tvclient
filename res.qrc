@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/ui">
+        <file>streamlist.qml</file>
+    </qresource>
+    <qresource prefix="/image">
+        <file>thumb-error.jpg</file>
+    </qresource>
+</RCC>
