@@ -3,8 +3,10 @@
 
 #include <QMainWindow>
 #include <QQuickView>
-#include <QWebView>
 #include <QSplitter>
+#include <QTimer>
+#include "webview.h"
+#include "controlwidget.h"
 #include "streampreviewmodel.h"
 #include "streamripper.h"
 
@@ -19,16 +21,25 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+protected:
+    void resizeEvent(QResizeEvent * event);
     
 private:
     QSplitter splitter;
     QQuickView qml;
-    QWebView view;
+    WebView view;
     QWidget *qmlWidget;
+    ControlWidget *controls;
     StreamRipper ripper;
     StreamPreviewModel streamModel;
+    QTimer timer;
+
 protected slots:
     void loadStream(const QString &link);
+    void onShowMenu();
+    void onTop();
+    void onTimer();
 };
 
 #endif // MAINWINDOW_H

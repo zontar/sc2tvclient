@@ -5,5 +5,10 @@
     <qresource prefix="/image">
         <file>thumb-error.jpg</file>
         <file>background.jpg</file>
+        <file>wclose.png</file>
+        <file>wmax.png</file>
+        <file>wmin.png</file>
+        <file>wtop.png</file>
+        <file>btop.png</file>
     </qresource>
 </RCC>

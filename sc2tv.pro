@@ -18,14 +18,18 @@ SOURCES += main.cpp\
     streampreviewmodel.cpp \
     streampreviewitem.cpp \
     stream.cpp \
-    imagestore.cpp
+    imagestore.cpp \
+    controlwidget.cpp \
+    webview.cpp
 
 HEADERS  += mainwindow.h \
     streamripper.h \
     streampreviewmodel.h \
     streampreviewitem.h \
     stream.h \
-    imagestore.h
+    imagestore.h \
+    controlwidget.h \
+    webview.h
 
 FORMS    +=
 
