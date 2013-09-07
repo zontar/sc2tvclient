@@ -1,22 +1,25 @@
 #include "controlwidget.h"
 #include <QPalette>
+#include <QMouseEvent>
 #include <QDebug>
 
 ControlWidget::ControlWidget(QWidget *parent) :
-    QWidget(parent), onTop(false)
+    QWidget(parent), onTop(false), hasMousePress(false), controlsVisible(true)
 {
-    pbClose.setParent(this);
-    pbMax.setParent(this);
-    pbMin.setParent(this);
-    pbTop.setParent(this);
-    pbShow.setParent(this);
-
-    pbTop.setGeometry(7,4,32,32);
-    pbMin.setGeometry(43,4,32,32);
-    pbMax.setGeometry(77,4,32,32);
-    pbClose.setGeometry(111,4,32,32);
-    pbShow.setGeometry(0,0,32,32);
-    this->setFixedSize(150,40);
+    pbTop.setFixedSize(32,32);
+    pbMin.setFixedSize(32,32);
+    pbMax.setFixedSize(32,32);
+    pbClose.setFixedSize(32,32);
+    pbShow.setFixedSize(32,32);
+    hbLayout.setMargin(0);
+    hbLayout.addStretch();
+    hbLayout.addWidget(&pbTop);
+    hbLayout.addWidget(&pbMin);
+    hbLayout.addWidget(&pbMax);
+    hbLayout.addWidget(&pbClose);
+    hbLayout.addWidget(&pbShow);
+    setFixedHeight(40);
+    setLayout(&hbLayout);
     QPalette p(palette());
     p.setColor(QPalette::Background, QColor(00,46,118,204));
     this->setAutoFillBackground(true);
@@ -32,24 +35,55 @@ ControlWidget::ControlWidget(QWidget *parent) :
     connect(&pbTop,SIGNAL(clicked()),this,SLOT(onPbTop()));
     connect(&pbShow,SIGNAL(hover()),this,SLOT(showControls()));
     this->setWindowOpacity(0.8);
-//    timer.singleShot(2000,this,SLOT(onTimer()));
     hideControls();
+}
+
+bool ControlWidget::isConrolsVisible()
+{
+    return controlsVisible;
 }
 
 void ControlWidget::enterEvent(QEvent *event)
 {
     Q_UNUSED(event)
+    hasCursor = true;
     timer.stop();
 }
 
 void ControlWidget::leaveEvent(QEvent *)
 {
+    hasCursor = false;
     timer.singleShot(2000,this,SLOT(onTimer()));
+}
+
+void ControlWidget::mouseMoveEvent(QMouseEvent *event)
+{
+    if((event->buttons() & Qt::LeftButton) && hasMousePress)
+    {
+     //   moveRequest(event->globalX()-oldPos.x(), event->globalY()-oldPos.y());
+        qDebug() << "move on " << event->globalPos() << "; delta:" <<event->globalPos()-oldPos;
+        moveRequest(event->globalPos()-oldPos);
+    }
+
+}
+
+void ControlWidget::mousePressEvent(QMouseEvent *event)
+{
+    hasMousePress = true;
+    qDebug() << "mouse press on " << event->globalPos();
+    oldPos = event->globalPos();
+}
+
+void ControlWidget::mouseReleaseEvent(QMouseEvent *event)
+{
+    Q_UNUSED(event)
+    hasMousePress = false;
 }
 
 void ControlWidget::showControls()
 {
-    setFixedSize(150,40);
+    setFixedHeight(40);
+    setGeometry(0,0,parentWidget()->width(),40);
     pbClose.show();
     pbMax.show();
     pbMin.show();
@@ -58,6 +92,7 @@ void ControlWidget::showControls()
     QPalette p(palette());
     p.setColor(QPalette::Background, QColor(00,46,118,204));
     setPalette(p);
+    controlsVisible = true;
     emit sizeChange();
 }
 
@@ -68,10 +103,11 @@ void ControlWidget::hideControls()
     pbMin.hide();
     pbTop.hide();
     pbShow.show();
-    setFixedSize(32,32);
+    setFixedHeight(32);
     QPalette p(palette());
     p.setColor(QPalette::Background, QColor(00,00,00,00));
     setPalette(p);
+    controlsVisible = false;
     emit sizeChange();
 }
 
@@ -100,7 +136,7 @@ void ControlWidget::onPbTop()
 
 void ControlWidget::onTimer()
 {
-    hideControls();
+    if(!hasCursor)hideControls();
 }
 
 

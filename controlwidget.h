@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QTimer>
+#include <QHBoxLayout>
 
 class HoverButton: public QPushButton
 {
@@ -19,6 +20,7 @@ class ControlWidget : public QWidget
     Q_OBJECT
 public:
     explicit ControlWidget(QWidget *parent = 0);
+    bool isConrolsVisible();
 private:
     QPushButton pbClose;
     QPushButton pbMax;
@@ -28,10 +30,17 @@ private:
     bool onTop;
     QTimer timer;
     bool hasCursor;
+    bool hasMousePress;
+    QPoint oldPos;
+    bool controlsVisible;
+    QHBoxLayout hbLayout;
 
 protected:
     void enterEvent(QEvent *);
     void leaveEvent(QEvent *);
+    void mouseMoveEvent(QMouseEvent * event);
+    void mousePressEvent(QMouseEvent * event);
+    void mouseReleaseEvent(QMouseEvent * event);
 
 signals:
     void requestClose();
@@ -39,6 +48,7 @@ signals:
     void requestMinimize();
     void requestTop();
     void sizeChange();
+    void moveRequest(QPoint delta);
 
 protected slots:
     void onPbClose();

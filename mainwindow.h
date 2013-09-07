@@ -40,6 +40,7 @@ protected slots:
     void onTop();
     void onMaximixe();
     void controlsChanged();
+    void moveWindow(QPoint delta);
 };
 
 #endif // MAINWINDOW_H
