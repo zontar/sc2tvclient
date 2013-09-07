@@ -10,5 +10,6 @@
         <file>wmin.png</file>
         <file>wtop.png</file>
         <file>btop.png</file>
+        <file>triangle.png</file>
     </qresource>
 </RCC>

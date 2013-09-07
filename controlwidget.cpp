@@ -9,11 +9,13 @@ ControlWidget::ControlWidget(QWidget *parent) :
     pbMax.setParent(this);
     pbMin.setParent(this);
     pbTop.setParent(this);
+    pbShow.setParent(this);
 
     pbTop.setGeometry(7,4,32,32);
     pbMin.setGeometry(43,4,32,32);
     pbMax.setGeometry(77,4,32,32);
     pbClose.setGeometry(111,4,32,32);
+    pbShow.setGeometry(0,0,32,32);
     this->setFixedSize(150,40);
     QPalette p(palette());
     p.setColor(QPalette::Background, QColor(00,46,118,204));
@@ -23,31 +25,54 @@ ControlWidget::ControlWidget(QWidget *parent) :
     pbMax.setStyleSheet("border-image: url(:/image/wmax.png)");
     pbMin.setStyleSheet("border-image: url(:/image/wmin.png)");
     pbTop.setStyleSheet("border-image: url(:/image/wtop.png)");
+    pbShow.setStyleSheet("border-image: url(:/image/triangle.png)");
     connect(&pbClose,SIGNAL(clicked()),this,SLOT(onPbClose()));
     connect(&pbMax,SIGNAL(clicked()),this,SLOT(onPbMax()));
     connect(&pbMin,SIGNAL(clicked()),this,SLOT(onPbMin()));
     connect(&pbTop,SIGNAL(clicked()),this,SLOT(onPbTop()));
+    connect(&pbShow,SIGNAL(hover()),this,SLOT(showControls()));
     this->setWindowOpacity(0.8);
 //    timer.singleShot(2000,this,SLOT(onTimer()));
+    hideControls();
 }
 
 void ControlWidget::enterEvent(QEvent *event)
 {
     Q_UNUSED(event)
-    hasCursor = true;
     timer.stop();
 }
 
 void ControlWidget::leaveEvent(QEvent *)
 {
-    hasCursor = false;
     timer.singleShot(2000,this,SLOT(onTimer()));
 }
 
-void ControlWidget::setVisible(bool visible)
+void ControlWidget::showControls()
 {
-    QWidget::setVisible(visible);
-    if(visible==true) timer.singleShot(2000,this,SLOT(onTimer()));
+    setFixedSize(150,40);
+    pbClose.show();
+    pbMax.show();
+    pbMin.show();
+    pbTop.show();
+    pbShow.hide();
+    QPalette p(palette());
+    p.setColor(QPalette::Background, QColor(00,46,118,204));
+    setPalette(p);
+    emit sizeChange();
+}
+
+void ControlWidget::hideControls()
+{
+    pbClose.hide();
+    pbMax.hide();
+    pbMin.hide();
+    pbTop.hide();
+    pbShow.show();
+    setFixedSize(32,32);
+    QPalette p(palette());
+    p.setColor(QPalette::Background, QColor(00,00,00,00));
+    setPalette(p);
+    emit sizeChange();
 }
 
 void ControlWidget::onPbClose()
@@ -75,5 +100,11 @@ void ControlWidget::onPbTop()
 
 void ControlWidget::onTimer()
 {
-    if(!hasCursor) setVisible(false);
+    hideControls();
+}
+
+
+void HoverButton::enterEvent(QEvent *)
+{
+    emit hover();
 }

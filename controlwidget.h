@@ -5,6 +5,15 @@
 #include <QPushButton>
 #include <QTimer>
 
+class HoverButton: public QPushButton
+{
+    Q_OBJECT
+protected:
+    void enterEvent(QEvent *);
+signals:
+    void hover();
+};
+
 class ControlWidget : public QWidget
 {
     Q_OBJECT
@@ -15,6 +24,7 @@ private:
     QPushButton pbMax;
     QPushButton pbMin;
     QPushButton pbTop;
+    HoverButton pbShow;
     bool onTop;
     QTimer timer;
     bool hasCursor;
@@ -28,9 +38,7 @@ signals:
     void requestMaximize();
     void requestMinimize();
     void requestTop();
-
-public slots:
-    void setVisible(bool visible);
+    void sizeChange();
 
 protected slots:
     void onPbClose();
@@ -38,6 +46,8 @@ protected slots:
     void onPbMin();
     void onPbTop();
     void onTimer();
+    void showControls();
+    void hideControls();
 
 };
 

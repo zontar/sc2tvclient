@@ -24,8 +24,6 @@ public:
 
 protected:
     void resizeEvent(QResizeEvent * event);
-    void leaveEvent(QEvent *);
-    void enterEvent(QEvent *);
 
 private:
     QSplitter splitter;
@@ -41,7 +39,7 @@ protected slots:
     void loadStream(const QString &link);
     void onTop();
     void onMaximixe();
-    void onTimer();
+    void controlsChanged();
 };
 
 #endif // MAINWINDOW_H
