@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
     splitter.addWidget(qmlWidget);
     splitter.setStyleSheet("QSplitter{\nborder-image: url(:/image/background.jpg);\n}\n\n \
                            QSplitterHandle{\nbackground-color: #82817e;\nwidth: 5px;\nheight: 5px;\n}\n\n \
-                           QWebView{\nbackground-color: rgba(0, 0, 0,255);\n}\n");
+                           QWebView{\nbackground-color: rgba(0, 0, 0,0);\n}\n");
     splitter.setOrientation(Qt::Vertical);
     setCentralWidget(&splitter);
     controls = new ControlWidget(this);

@@ -60,9 +60,7 @@ void ControlWidget::mouseMoveEvent(QMouseEvent *event)
 {
     if((event->buttons() & Qt::LeftButton) && hasMousePress)
     {
-     //   moveRequest(event->globalX()-oldPos.x(), event->globalY()-oldPos.y());
-        qDebug() << "move on " << event->globalPos() << "; delta:" <<event->globalPos()-oldPos;
-        moveRequest(event->globalPos()-oldPos);
+        moveRequest(event->pos()-oldPos);
     }
 
 }
@@ -70,8 +68,7 @@ void ControlWidget::mouseMoveEvent(QMouseEvent *event)
 void ControlWidget::mousePressEvent(QMouseEvent *event)
 {
     hasMousePress = true;
-    qDebug() << "mouse press on " << event->globalPos();
-    oldPos = event->globalPos();
+    oldPos = event->pos();
 }
 
 void ControlWidget::mouseReleaseEvent(QMouseEvent *event)
