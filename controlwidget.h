@@ -17,16 +17,20 @@ private:
     QPushButton pbTop;
     bool onTop;
     QTimer timer;
+    bool hasCursor;
 
 protected:
-    void leaveEvent(QEvent *);
     void enterEvent(QEvent *);
+    void leaveEvent(QEvent *);
 
 signals:
     void requestClose();
     void requestMaximize();
     void requestMinimize();
     void requestTop();
+
+public slots:
+    void setVisible(bool visible);
 
 protected slots:
     void onPbClose();

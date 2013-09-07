@@ -28,19 +28,26 @@ ControlWidget::ControlWidget(QWidget *parent) :
     connect(&pbMin,SIGNAL(clicked()),this,SLOT(onPbMin()));
     connect(&pbTop,SIGNAL(clicked()),this,SLOT(onPbTop()));
     this->setWindowOpacity(0.8);
-
-}
-
-void ControlWidget::leaveEvent(QEvent *event)
-{
-    Q_UNUSED(event)
-    timer.singleShot(2000,this,SLOT(onTimer()));
+//    timer.singleShot(2000,this,SLOT(onTimer()));
 }
 
 void ControlWidget::enterEvent(QEvent *event)
 {
     Q_UNUSED(event)
+    hasCursor = true;
     timer.stop();
+}
+
+void ControlWidget::leaveEvent(QEvent *)
+{
+    hasCursor = false;
+    timer.singleShot(2000,this,SLOT(onTimer()));
+}
+
+void ControlWidget::setVisible(bool visible)
+{
+    QWidget::setVisible(visible);
+    if(visible==true) timer.singleShot(2000,this,SLOT(onTimer()));
 }
 
 void ControlWidget::onPbClose()
@@ -68,5 +75,5 @@ void ControlWidget::onPbTop()
 
 void ControlWidget::onTimer()
 {
-    setVisible(false);
+    if(!hasCursor) setVisible(false);
 }

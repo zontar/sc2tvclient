@@ -5,7 +5,7 @@
 #include <QQuickView>
 #include <QSplitter>
 #include <QTimer>
-#include "webview.h"
+#include <QWebView>
 #include "controlwidget.h"
 #include "streampreviewmodel.h"
 #include "streamripper.h"
@@ -24,11 +24,13 @@ public:
 
 protected:
     void resizeEvent(QResizeEvent * event);
-    
+    void leaveEvent(QEvent *);
+    void enterEvent(QEvent *);
+
 private:
     QSplitter splitter;
     QQuickView qml;
-    WebView view;
+    QWebView view;
     QWidget *qmlWidget;
     ControlWidget *controls;
     StreamRipper ripper;
@@ -37,8 +39,8 @@ private:
 
 protected slots:
     void loadStream(const QString &link);
-    void onShowMenu();
     void onTop();
+    void onMaximixe();
     void onTimer();
 };
 

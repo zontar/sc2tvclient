@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include <QVBoxLayout>
 #include <QQmlContext>
-
 #include <QDebug>
 
 
@@ -25,14 +24,13 @@ MainWindow::MainWindow(QWidget *parent) :
     setCentralWidget(&splitter);
     controls = new ControlWidget(this);
     QObject::connect(controls,SIGNAL(requestClose()),this,SLOT(close()));
-    QObject::connect(controls,SIGNAL(requestMaximize()),this,SLOT(showMaximized()));
+    QObject::connect(controls,SIGNAL(requestMaximize()),this,SLOT(onMaximixe()));
     QObject::connect(controls,SIGNAL(requestMinimize()),this,SLOT(showMinimized()));
     QObject::connect(controls,SIGNAL(requestTop()),this,SLOT(onTop()));
-    QObject::connect(&view,SIGNAL(showMenu()),this,SLOT(onShowMenu()));
     ripper.load();
     this->setWindowFlags(Qt::MSWindowsFixedSizeDialogHint); //Set window to fixed size
     this->setWindowFlags(Qt::CustomizeWindowHint); //Set window with no title bar
-    this->setWindowFlags(Qt::FramelessWindowHint); //Set a frameless window
+//    this->setWindowFlags(Qt::FramelessWindowHint); //Set a frameless window
 }
 
 MainWindow::~MainWindow()
@@ -43,7 +41,17 @@ MainWindow::~MainWindow()
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
    Q_UNUSED(event)
-   controls->setGeometry(this->width()-150,0,150,40);
+    controls->setGeometry(this->width()-150,0,150,40);
+}
+
+void MainWindow::leaveEvent(QEvent *)
+{
+    controls->setVisible(true);
+}
+
+void MainWindow::enterEvent(QEvent *)
+{
+    controls->setVisible(true);
 }
 
 void MainWindow::loadStream(const QString &link)
@@ -51,12 +59,6 @@ void MainWindow::loadStream(const QString &link)
     qDebug() << "start load stream: " << link;
     view.stop();
     view.load(QUrl(link));
-}
-
-void MainWindow::onShowMenu()
-{
-    qDebug() << "show";
-    controls->setVisible(true);
 }
 
 void MainWindow::onTop()
@@ -70,9 +72,17 @@ void MainWindow::onTop()
     {
         qDebug() << "2";
         setWindowFlags(Qt::WindowStaysOnTopHint);
+        this->setWindowFlags(Qt::MSWindowsFixedSizeDialogHint); //Set window to fixed size
+        this->setWindowFlags(Qt::CustomizeWindowHint); //Set window with no title bar
     }
     show();
     timer.singleShot(5000,this,SLOT(onTimer()));
+}
+
+void MainWindow::onMaximixe()
+{
+    if(this->isMaximized()) showNormal();
+    else showMaximized();
 }
 
 void MainWindow::onTimer()
