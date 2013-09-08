@@ -18,7 +18,13 @@ class StreamPreviewItem : public QObject
     Q_PROPERTY(int rating READ getRating WRITE setRating)
     Q_PROPERTY(int id READ getId WRITE setId)
 
+
 public:
+    enum StreamType
+    {
+        Fun, Real, Main, Prime, Favorite
+    };
+
     explicit StreamPreviewItem(QObject *parent = 0);
     StreamPreviewItem(const StreamPreviewItem &right);
     StreamPreviewItem& operator=(const StreamPreviewItem &right);
@@ -40,6 +46,8 @@ public:
     int getRating() const;
     void setId(const int val);
     int getId() const;
+    void setType(StreamType type);
+    StreamType getType() const;
 
 private:
     QString name;
@@ -51,6 +59,7 @@ private:
     QString picturelink;
     int id;
     int rating;
+    StreamType streamType;
 
 signals:
     

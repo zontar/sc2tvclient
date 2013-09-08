@@ -45,7 +45,7 @@ signals:
 public slots:
     void addItem(const StreamPreviewItem item);
     void addItems(QList<StreamPreviewItem> values);
-    void loadStream(int id);
+    void loadStream(const QString &link);
     void streamReady(const QString &link);
 };
 

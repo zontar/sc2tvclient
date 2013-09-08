@@ -118,6 +118,16 @@ int StreamPreviewItem::getId() const
     return id;
 }
 
+void StreamPreviewItem::setType(StreamPreviewItem::StreamType type)
+{
+    streamType = type;
+}
+
+StreamPreviewItem::StreamType StreamPreviewItem::getType() const
+{
+    return streamType;
+}
+
 void StreamPreviewItem::setId(const int val)
 {
     id = val;

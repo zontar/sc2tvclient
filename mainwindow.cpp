@@ -10,6 +10,9 @@ MainWindow::MainWindow(QWidget *parent) :
     view.settings()->setAttribute(QWebSettings::PluginsEnabled,true);
     QObject::connect(&ripper,SIGNAL(funStreamFound(StreamPreviewItem)),&streamModel,SLOT(addItem(StreamPreviewItem)));
     QObject::connect(&streamModel,SIGNAL(showStream(QString)),this,SLOT(loadStream(QString)));
+ /*   proxyModel.setSourceModel(&streamModel);
+    proxyModel.setSortRole(StreamPreviewModel::RatingRole);
+    proxyModel.sort(0,Qt::DescendingOrder);*/
     qml.setSource(QUrl("qrc:///ui/streamlist.qml"));
     qml.rootContext()->setContextProperty("streammodel", &streamModel);
     qml.setResizeMode(QQuickView::SizeRootObjectToView);
@@ -77,7 +80,7 @@ void MainWindow::controlsChanged()
 {
     if(controls->isConrolsVisible())
     {
-        controls->setGeometry(0,0,this->width(),controls->height());
+        controls->setGeometry(0,0,this->width(),32);
     }
     else
     {
@@ -87,6 +90,5 @@ void MainWindow::controlsChanged()
 
 void MainWindow::moveWindow(QPoint delta)
 {
-    qDebug() << "Move window on" << delta;
     move(this->pos()+delta);
 }

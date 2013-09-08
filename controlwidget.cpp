@@ -18,7 +18,7 @@ ControlWidget::ControlWidget(QWidget *parent) :
     hbLayout.addWidget(&pbMax);
     hbLayout.addWidget(&pbClose);
     hbLayout.addWidget(&pbShow);
-    setFixedHeight(40);
+    setFixedHeight(32);
     setLayout(&hbLayout);
     QPalette p(palette());
     p.setColor(QPalette::Background, QColor(00,46,118,204));
@@ -79,8 +79,7 @@ void ControlWidget::mouseReleaseEvent(QMouseEvent *event)
 
 void ControlWidget::showControls()
 {
-    setFixedHeight(40);
-    setGeometry(0,0,parentWidget()->width(),40);
+    setGeometry(0,0,parentWidget()->width(),32);
     pbClose.show();
     pbMax.show();
     pbMin.show();
@@ -100,7 +99,6 @@ void ControlWidget::hideControls()
     pbMin.hide();
     pbTop.hide();
     pbShow.show();
-    setFixedHeight(32);
     QPalette p(palette());
     p.setColor(QPalette::Background, QColor(00,00,00,00));
     setPalette(p);

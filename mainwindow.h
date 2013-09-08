@@ -6,6 +6,7 @@
 #include <QSplitter>
 #include <QTimer>
 #include <QWebView>
+#include <QSortFilterProxyModel>
 #include "controlwidget.h"
 #include "streampreviewmodel.h"
 #include "streamripper.h"
@@ -33,6 +34,7 @@ private:
     ControlWidget *controls;
     StreamRipper ripper;
     StreamPreviewModel streamModel;
+    QSortFilterProxyModel proxyModel;
     QTimer timer;
 
 protected slots:

@@ -79,7 +79,6 @@ void StreamPreviewModel::addItem(const StreamPreviewItem item)
     beginInsertRows(QModelIndex(),items.size(),items.size());
     items.push_back(item);
     endInsertRows();
-
 }
 
 void StreamPreviewModel::addItems(QList<StreamPreviewItem> values)
@@ -87,9 +86,9 @@ void StreamPreviewModel::addItems(QList<StreamPreviewItem> values)
     items.append(values);
 }
 
-void StreamPreviewModel::loadStream(int id)
+void StreamPreviewModel::loadStream(const QString &link)
 {
-    stream.prepare(items.at(id).getLink());
+    stream.prepare(link);
 }
 
 void StreamPreviewModel::streamReady(const QString &link)

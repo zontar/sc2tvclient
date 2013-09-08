@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     streampreviewitem.cpp \
     stream.cpp \
     imagestore.cpp \
-    controlwidget.cpp
+    controlwidget.cpp \
+    streamsortfilterproxymodel.cpp
 
 HEADERS  += mainwindow.h \
     streamripper.h \
@@ -27,7 +28,8 @@ HEADERS  += mainwindow.h \
     streampreviewitem.h \
     stream.h \
     imagestore.h \
-    controlwidget.h
+    controlwidget.h \
+    streamsortfilterproxymodel.h
 
 FORMS    +=
 
