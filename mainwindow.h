@@ -10,6 +10,7 @@
 #include "controlwidget.h"
 #include "streampreviewmodel.h"
 #include "streamripper.h"
+#include "stream.h"
 
 namespace Ui {
 class MainWindow;
@@ -36,6 +37,7 @@ private:
     StreamPreviewModel streamModel;
     QSortFilterProxyModel proxyModel;
     QTimer timer;
+    Stream stream;
 
 protected slots:
     void loadStream(const QString &link);
@@ -43,6 +45,7 @@ protected slots:
     void onMaximixe();
     void controlsChanged();
     void moveWindow(QPoint delta);
+
 };
 
 #endif // MAINWINDOW_H

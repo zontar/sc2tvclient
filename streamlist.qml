@@ -106,7 +106,7 @@ Rectangle {
                 hoverEnabled: true
                 anchors.fill: parent
                 onClicked: {
-                    streammodel.loadStream(model.link)
+                    stream.prepare(model.link)
                 }
             }
         }

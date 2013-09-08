@@ -14,7 +14,7 @@ StreamPreviewModel::StreamPreviewModel(QObject *parent) :
     roles[IdRole] = "id";
     roles[RatingRole] = "rating";
 
-    connect(&stream,SIGNAL(streamReady(QString)),this,SLOT(streamReady(QString)));
+
 }
 
 void StreamPreviewModel::setItemCount(const int &val)
@@ -84,16 +84,6 @@ void StreamPreviewModel::addItem(const StreamPreviewItem item)
 void StreamPreviewModel::addItems(QList<StreamPreviewItem> values)
 {
     items.append(values);
-}
-
-void StreamPreviewModel::loadStream(const QString &link)
-{
-    stream.prepare(link);
-}
-
-void StreamPreviewModel::streamReady(const QString &link)
-{
-    emit showStream(link);
 }
 
 QHash<int, QByteArray> StreamPreviewModel::roleNames() const

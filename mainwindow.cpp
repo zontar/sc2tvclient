@@ -9,12 +9,13 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     view.settings()->setAttribute(QWebSettings::PluginsEnabled,true);
     QObject::connect(&ripper,SIGNAL(funStreamFound(StreamPreviewItem)),&streamModel,SLOT(addItem(StreamPreviewItem)));
-    QObject::connect(&streamModel,SIGNAL(showStream(QString)),this,SLOT(loadStream(QString)));
- /*   proxyModel.setSourceModel(&streamModel);
+    QObject::connect(&stream,SIGNAL(streamReady(QString)),this,SLOT(loadStream(QString)));
+    proxyModel.setSourceModel(&streamModel);
     proxyModel.setSortRole(StreamPreviewModel::RatingRole);
-    proxyModel.sort(0,Qt::DescendingOrder);*/
+    proxyModel.sort(0,Qt::DescendingOrder);
     qml.setSource(QUrl("qrc:///ui/streamlist.qml"));
-    qml.rootContext()->setContextProperty("streammodel", &streamModel);
+    qml.rootContext()->setContextProperty("streammodel", &proxyModel);
+    qml.rootContext()->setContextProperty("stream", &stream);
     qml.setResizeMode(QQuickView::SizeRootObjectToView);
     qmlWidget = QWidget::createWindowContainer(&qml);
     qmlWidget->setFixedHeight(240);

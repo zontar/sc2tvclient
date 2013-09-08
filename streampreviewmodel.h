@@ -4,7 +4,6 @@
 #include <QObject>
 #include <QAbstractListModel>
 #include "streampreviewitem.h"
-#include "stream.h"
 
 class StreamPreviewModel : public QAbstractListModel
 {
@@ -36,17 +35,14 @@ private:
     int itemCount;
     QList<StreamPreviewItem> items;
     QHash<int, QByteArray> roles;
-    Stream stream;
+
 
 signals:
     void itemCountChanged();
-    void showStream(const QString &link);
     
 public slots:
     void addItem(const StreamPreviewItem item);
     void addItems(QList<StreamPreviewItem> values);
-    void loadStream(const QString &link);
-    void streamReady(const QString &link);
 };
 
 #endif // STREAMPREVIEW_H
