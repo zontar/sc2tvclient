@@ -11,10 +11,10 @@ public:
     AbstractStreamItem(const QVariantMap &map);
     virtual ~AbstractStreamItem();
     QVariant getValue(const QString &name) const;
-    void setValue(const QString &name, const QVariant &value);
+    bool setValue(const QString &name, const QVariant &value);
 
 protected:
-    QVariantMap values_;
+    QVariantMap m_values;
 };
 
 #endif // ABSTRACTSTREAMITEM_H

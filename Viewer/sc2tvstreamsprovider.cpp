@@ -61,5 +61,4 @@ void Sc2tvStreamsProvider::streamListDownloaded()
         Sc2tvStreamItem item(value.toObject().toVariantMap());
         emit found(item);
     }
-
 }

@@ -16,13 +16,17 @@ SOURCES += main.cpp\
     abstractstreamsprovider.cpp \
     abstractstreamitem.cpp \
     sc2tvstreamsprovider.cpp \
-    sc2tvstreamitem.cpp
+    sc2tvstreamitem.cpp \
+    abstractstreammodel.cpp \
+    sc2tvstreammodel.cpp
 
 HEADERS  += mainwindow.h \
     abstractstreamsprovider.h \
     abstractstreamitem.h \
     sc2tvstreamsprovider.h \
-    sc2tvstreamitem.h
+    sc2tvstreamitem.h \
+    abstractstreammodel.h \
+    sc2tvstreammodel.h
 
 FORMS    +=
 

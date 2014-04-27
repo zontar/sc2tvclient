@@ -4,7 +4,7 @@ AbstractStreamItem::AbstractStreamItem()
 {
 }
 
-AbstractStreamItem::AbstractStreamItem(const QVariantMap &map): values_(map)
+AbstractStreamItem::AbstractStreamItem(const QVariantMap &map): m_values(map)
 {
 
 }
@@ -16,10 +16,12 @@ AbstractStreamItem::~AbstractStreamItem()
 
 QVariant AbstractStreamItem::getValue(const QString &name) const
 {
-    return values_.contains(name)?values_[name]:QVariant();
+    return m_values.contains(name)?m_values[name]:QVariant();
 }
 
-void AbstractStreamItem::setValue(const QString &name, const QVariant &value)
+bool AbstractStreamItem::setValue(const QString &name, const QVariant &value)
 {
-    values_[name] = value;
+    if(!m_values.contains(name)) return false;
+    m_values[name] = value;
+    return true;
 }

@@ -1,6 +1,10 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include <QQmlContext>
+#include "sc2tvstreammodel.h"
+#include "sc2tvstreamsprovider.h"
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
@@ -8,8 +12,12 @@ MainWindow::MainWindow(QWidget *parent) :
     wvStreamView.settings()->setAttribute(QWebSettings::PluginsEnabled,true);
     wvStreamView.page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
 
+    m_provider = new Sc2tvStreamsProvider();
+    m_model = new Sc2tvStreamModel();
+
     qvStreamList.setSource(QUrl("qrc:///ui/StreamList.qml"));
     qvStreamList.setResizeMode(QQuickView::SizeRootObjectToView);
+    qvStreamList.rootContext()->setContextProperty("StreamModel", m_model);
     wStreamList = QWidget::createWindowContainer(&qvStreamList);
 
     sSplitter = new QSplitter(Qt::Vertical, this);
@@ -22,6 +30,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     setCentralWidget(sSplitter);
+
+    m_provider->get();
 
  //   sc2tvProvider.get();
 }

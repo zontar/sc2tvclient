@@ -6,7 +6,8 @@
 #include <QSplitter>
 #include <QWebView>
 
-#include "sc2tvstreamsprovider.h"
+#include "abstractstreamsprovider.h"
+#include "abstractstreammodel.h"
 
 class MainWindow : public QMainWindow
 {
@@ -17,11 +18,12 @@ public:
     ~MainWindow();
 
 private:
-    Sc2tvStreamsProvider sc2tvProvider;
     QQuickView qvStreamList;
     QSplitter *sSplitter;
     QWebView wvStreamView;
     QWidget *wStreamList;
+    AbstractStreamModel *m_model;
+    AbstractStreamsProvider *m_provider;
 
 private slots:
 };
