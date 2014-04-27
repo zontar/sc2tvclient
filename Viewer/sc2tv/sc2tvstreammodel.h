@@ -28,6 +28,8 @@ protected:
 public slots:
     const QUrl getRelatedDelegate() const;
     void getPlayerUrl(const QString &page);
+
+private slots:
     QString getUrl(const QJsonObject &jObj);
 };
 

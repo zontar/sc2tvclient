@@ -4,6 +4,10 @@
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <QJsonArray>
+#include <QEventLoop>
+#include "singlenetworkaccessmanager.h"
+#include <QNetworkReply>
+#include <QNetworkRequest>
 #include <QDebug>
 
 Sc2tvStreamModel::Sc2tvStreamModel(QObject *parent) :
@@ -99,6 +103,23 @@ QString Sc2tvStreamModel::getUrl(const QJsonObject &jObj)
     {
         emit error("Couldn't found player src");
         return QString();
+    }
+    if(playerName == "Cybergame")
+    {
+        SingleNetworkAccessManager *net = SingleNetworkAccessManager::instance();
+        QEventLoop ev;
+        QNetworkReply *r = net->get(QNetworkRequest(QUrl(match.captured(1))));
+        connect(r, SIGNAL(finished()), &ev, SLOT(quit()));
+        ev.exec();
+        r->deleteLater();
+        QString page = r->readAll();
+        re.setPattern("src=\"(.*)\"");
+        match = re.match(page);
+        if(!match.hasMatch())
+        {
+            emit error("Couldn't found Cybergame player src");
+            return QString();
+        }
     }
     return match.captured(1);
 }

@@ -47,4 +47,8 @@ OTHER_FILES += \
 
 RESOURCES += rc.qrc
 
-RC_FILE = viewer.rc
+win32 {
+    RC_FILE = viewer.rc
+    Debug: QMAKE_PRE_LINK = "$$PWD\..\MakeDistr.cmd $(QTDIR) debug"
+    Release: QMAKE_PRE_LINK = "$$PWD\..\MakeDistr.cmd $(QTDIR) release"
+}

@@ -2,3 +2,4 @@ build/
 libs/
 *.pro.user
 bin/
+distrib/
