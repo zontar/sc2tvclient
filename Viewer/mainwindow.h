@@ -28,6 +28,7 @@ private:
 private slots:
     void foundUrls(const QStringList &urls);
     void modelError(const QString &description);
+    void providerError(const QString &description);
 };
 
 #endif // MAINWINDOW_H

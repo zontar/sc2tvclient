@@ -38,7 +38,6 @@ INCLUDEPATH +=  .\
 Release:LIBS += -L../../libs/ -lDownloader -lSingleNetworkAccessManager
 Debug:LIBS +=   -L../../libs/ -lDownloaderd -lSingleNetworkAccessManagerd
 
-
 Debug:TARGET = $$join(TARGET,,,d)
 DESTDIR = ../../bin
 
