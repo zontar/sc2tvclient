@@ -21,7 +21,7 @@ mkdir %DestDir%\Release\imageformats
 mkdir %DestDir%\Release\QtQuick.2
 for %%F in (%ReleaseFiles%) do robocopy %1\bin %DestDir%\Release %%F /MIR
 robocopy %SrcDir%\plugins\platforms %DestDir%\Release\platforms qwindows.dll /MIR
-robocopy %SrcDir%\imageformats\platforms %DestDir%\Release\imageformats qjpeg.dll /MIR
+robocopy %SrcDir%\plugins\imageformats %DestDir%\Release\imageformats qjpeg.dll /MIR
 robocopy %SrcDir%\qml\QtQuick.2 %DestDir%\Release\QtQuick.2 /MIR /xf qtquick2plugind.dll
 copy /y %OpenSslDir%\*.dll %DestDir%\Release
 goto end
@@ -33,7 +33,7 @@ mkdir %DestDir%\Debug\imageformats
 mkdir %DestDir%\Debug\QtQuick.2
 for %%F in (%DebugFiles%) do robocopy %1\bin %DestDir%\Debug %%F /MIR
 robocopy %SrcDir%\plugins\platforms %DestDir%\Debug\platforms qwindowsd.dll /MIR
-robocopy %SrcDir%\imageformats\platforms %DestDir%\Debug\imageformats qjpegd.dll /MIR
+robocopy %SrcDir%\plugins\imageformats %DestDir%\Debug\imageformats qjpegd.dll /MIR
 robocopy %SrcDir%\qml\QtQuick.2 %DestDir%\Debug\QtQuick.2 /MIR /xf qtquick2plugin.dll
 copy /y %OpenSslDir%\*.dll %DestDir%\Debug
 goto end
