@@ -36,6 +36,7 @@ signals:
 
 public slots:
     virtual const QUrl getRelatedDelegate() const = 0;
+    void addItem(const AbstractStreamItem &item);
 };
 
 #endif // ABSTRACTSTREAMMODEL_H

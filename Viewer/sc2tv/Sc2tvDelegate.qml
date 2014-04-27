@@ -1,12 +1,12 @@
-import QtQuick 2.0
+import QtQuick 2.2
 
-Component
+Item
 {
-    id: streamDelegate
+    id: sc2tvDelegate
+    property bool hovered
     Rectangle
     {
         id: streamDelegateRect
-        property bool hovered
         width: 280
         height: 190
         color: "#002e76"
@@ -21,10 +21,10 @@ Component
             hoverEnabled: true
             anchors.fill: parent
             onEntered: {
-                hovered = true;
+                sc2tvDelegate.hovered = true;
             }
             onExited: {
-                hovered = false;
+                sc2tvDelegate.hovered = false;
             }
             onClicked:
             {

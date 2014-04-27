@@ -34,3 +34,12 @@ QHash<int, QByteArray> AbstractStreamModel::roleNames() const
 {
     return m_roles;
 }
+
+void AbstractStreamModel::addItem(const AbstractStreamItem &item)
+{
+    if(m_items.contains(item)) return;
+
+    beginInsertRows(QModelIndex(),m_items.size(),m_items.size());
+    m_items << item;
+    endInsertRows();
+}

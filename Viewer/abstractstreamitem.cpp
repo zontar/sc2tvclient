@@ -25,3 +25,8 @@ bool AbstractStreamItem::setValue(const QString &name, const QVariant &value)
     m_values[name] = value;
     return true;
 }
+
+bool operator==(const AbstractStreamItem& left, const AbstractStreamItem& right)
+{
+    return left.m_values == right.m_values;
+}

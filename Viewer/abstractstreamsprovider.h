@@ -13,7 +13,7 @@ public:
     virtual void get() = 0;
 
 signals:
-    void found(AbstractStreamItem &item);
+    void found(const AbstractStreamItem &item);
     void error(const QString &error);
 
 public slots:

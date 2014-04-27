@@ -31,6 +31,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     setCentralWidget(sSplitter);
 
+    connect(m_provider, SIGNAL(found(AbstractStreamItem)), m_model, SLOT(addItem(AbstractStreamItem)));
     m_provider->get();
 
 }
