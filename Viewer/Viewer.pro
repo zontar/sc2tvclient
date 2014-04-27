@@ -4,10 +4,8 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network
+QT       += core gui quick network widgets webkitwidgets
 CONFIG += c++11
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = Viewer
 TEMPLATE = app
@@ -40,4 +38,8 @@ Debug:TARGET = $$join(TARGET,,,d)
 DESTDIR = ../../bin
 
 OTHER_FILES += \
-    StreamList.qml
+    ui/StreamList.qml
+
+RESOURCES += rc.qrc
+
+RC_FILE = viewer.rc

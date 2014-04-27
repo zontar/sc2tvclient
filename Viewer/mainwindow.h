@@ -2,6 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QQuickView>
+#include <QSplitter>
+#include <QWebView>
+
 #include "sc2tvstreamsprovider.h"
 
 class MainWindow : public QMainWindow
@@ -14,6 +18,10 @@ public:
 
 private:
     Sc2tvStreamsProvider sc2tvProvider;
+    QQuickView qvStreamList;
+    QSplitter *sSplitter;
+    QWebView wvStreamView;
+    QWidget *wStreamList;
 
 private slots:
 };

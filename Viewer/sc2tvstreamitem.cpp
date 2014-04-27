@@ -3,3 +3,8 @@
 Sc2tvStreamItem::Sc2tvStreamItem()
 {
 }
+
+Sc2tvStreamItem::~Sc2tvStreamItem()
+{
+
+}

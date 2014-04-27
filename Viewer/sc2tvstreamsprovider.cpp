@@ -11,6 +11,11 @@ Sc2tvStreamsProvider::Sc2tvStreamsProvider(QObject *parent) :
     connect(&d_, SIGNAL(error(QString)), this, SLOT(downloadError(QString)));
 }
 
+Sc2tvStreamsProvider::~Sc2tvStreamsProvider()
+{
+
+}
+
 void Sc2tvStreamsProvider::get()
 {
     connect(&d_, SIGNAL(ready()) ,this, SLOT(streamListDownloaded()));

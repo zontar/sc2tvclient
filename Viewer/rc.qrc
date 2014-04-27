@@ -1,0 +1,28 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/background.jpg</file>
+        <file>images/bcog.png</file>
+        <file>images/bemptyheart.png</file>
+        <file>images/bemptystar.png</file>
+        <file>images/bfullheart.png</file>
+        <file>images/bfullstar.png</file>
+        <file>images/bhanddown.png</file>
+        <file>images/bhandup.png</file>
+        <file>images/btop.png</file>
+        <file>images/thumb-error.jpg</file>
+        <file>images/triangle.png</file>
+        <file>images/wclose.png</file>
+        <file>images/wcog.png</file>
+        <file>images/wemptyheart.png</file>
+        <file>images/wemptystar.png</file>
+        <file>images/wfullheart.png</file>
+        <file>images/wfullstar.png</file>
+        <file>images/whanddown.png</file>
+        <file>images/whandup.png</file>
+        <file>images/wmax.png</file>
+        <file>images/wmin.png</file>
+        <file>images/wtop.png</file>
+        <file>ui/page.html</file>
+        <file>ui/StreamList.qml</file>
+    </qresource>
+</RCC>
