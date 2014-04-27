@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "sc2tvstreamsprovider.h"
 
 namespace Ui {
 class MainWindow;
@@ -17,6 +18,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    Sc2tvStreamsProvider sc2tvProvider;
 };
 
 #endif // MAINWINDOW_H
