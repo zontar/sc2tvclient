@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -13,8 +13,25 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    abstractstreamsprovider.cpp \
+    abstractstreamitem.cpp \
+    sc2tvstreamsprovider.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    abstractstreamsprovider.h \
+    abstractstreamitem.h \
+    sc2tvstreamsprovider.h
 
 FORMS    += mainwindow.ui
+
+INCLUDEPATH +=  \
+                ../Commons/SingleNetworkAccessManager \
+                ../Commons/Downloader
+
+Release:LIBS += -L../../libs/ -lSingleNetworkAccessManager -lDownloader
+Debug:LIBS +=   -L../../libs/ -lSingleNetworkAccessManagerd -lDownloaderd
+
+
+Debug:TARGET = $$join(TARGET,,,d)
+DESTDIR = ../../bin

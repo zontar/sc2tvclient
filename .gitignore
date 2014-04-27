@@ -1,3 +1,4 @@
 build/
 libs/
 *.pro.user
+bin/
