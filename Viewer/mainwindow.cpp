@@ -48,14 +48,14 @@ MainWindow::~MainWindow()
 void MainWindow::foundUrls(const QStringList &urls)
 {
     qDebug() << urls;
-/*
+
     QFile f("://ui/page.html");
     f.open(QIODevice::ReadOnly);
     QString page = f.readAll();
-    f.close();*/
+    f.close();
     wvStreamView.stop();
-    //wvStreamView.setHtml(page.arg(urls[0]));
-    wvStreamView.load(QUrl(urls[0]));
+    wvStreamView.setHtml(page.arg(urls[0]));
+    //wvStreamView.load(QUrl(urls[0]));
 }
 
 void MainWindow::modelError(const QString &description)

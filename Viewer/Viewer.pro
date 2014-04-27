@@ -43,7 +43,8 @@ DESTDIR = ../../bin
 
 OTHER_FILES += \
     ui/StreamList.qml \
-    sc2tv/Sc2tvDelegate.qml
+    sc2tv/Sc2tvDelegate.qml \
+    ui/page.html
 
 RESOURCES += rc.qrc
 
