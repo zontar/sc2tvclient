@@ -15,9 +15,9 @@ MainWindow::MainWindow(QWidget *parent) :
     m_provider = new Sc2tvStreamsProvider();
     m_model = new Sc2tvStreamModel();
 
-    qvStreamList.setSource(QUrl("qrc:///ui/StreamList.qml"));
     qvStreamList.setResizeMode(QQuickView::SizeRootObjectToView);
     qvStreamList.rootContext()->setContextProperty("StreamModel", m_model);
+    qvStreamList.setSource(QUrl("qrc:///ui/StreamList.qml"));
     wStreamList = QWidget::createWindowContainer(&qvStreamList);
 
     sSplitter = new QSplitter(Qt::Vertical, this);
@@ -33,7 +33,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     m_provider->get();
 
- //   sc2tvProvider.get();
 }
 
 MainWindow::~MainWindow()

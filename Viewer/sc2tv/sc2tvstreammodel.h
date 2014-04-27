@@ -26,7 +26,7 @@ protected:
 signals:
 
 public slots:
-
+    const QUrl getRelatedDelegate() const;
 };
 
 #endif // SC2TVSTREAMMODEL_H

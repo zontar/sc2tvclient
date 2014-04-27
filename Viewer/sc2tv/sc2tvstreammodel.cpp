@@ -21,3 +21,8 @@ Sc2tvStreamModel::~Sc2tvStreamModel()
 {
 
 }
+
+const QUrl Sc2tvStreamModel::getRelatedDelegate() const
+{
+    return QUrl("qrc:///sc2tv/Sc2tvDelegate.qml");
+}

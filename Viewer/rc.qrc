@@ -24,5 +24,6 @@
         <file>images/wtop.png</file>
         <file>ui/page.html</file>
         <file>ui/StreamList.qml</file>
+        <file>sc2tv/Sc2tvDelegate.qml</file>
     </qresource>
 </RCC>

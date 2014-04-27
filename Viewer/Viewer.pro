@@ -43,7 +43,8 @@ Debug:TARGET = $$join(TARGET,,,d)
 DESTDIR = ../../bin
 
 OTHER_FILES += \
-    ui/StreamList.qml
+    ui/StreamList.qml \
+    sc2tv/Sc2tvDelegate.qml
 
 RESOURCES += rc.qrc
 

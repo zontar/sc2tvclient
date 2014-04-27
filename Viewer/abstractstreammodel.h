@@ -2,6 +2,7 @@
 #define ABSTRACTSTREAMMODEL_H
 
 #include <QAbstractListModel>
+#include <QUrl>
 #include "abstractstreamitem.h"
 
 class AbstractStreamModel : public QAbstractListModel
@@ -30,10 +31,11 @@ protected:
     QHash<int, QByteArray> roleNames() const;
     QList<AbstractStreamItem> m_items;
     QHash<int, QByteArray> m_roles;         //! Список названий свойств модели для использования в qml
-private:
-
 
 signals:
+
+public slots:
+    virtual const QUrl getRelatedDelegate() const = 0;
 };
 
 #endif // ABSTRACTSTREAMMODEL_H
