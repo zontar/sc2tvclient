@@ -29,8 +29,8 @@ INCLUDEPATH +=  \
                 ../Commons/SingleNetworkAccessManager \
                 ../Commons/Downloader
 
-Release:LIBS += -L../../libs/ -lSingleNetworkAccessManager -lDownloader
-Debug:LIBS +=   -L../../libs/ -lSingleNetworkAccessManagerd -lDownloaderd
+Release:LIBS += -L../../libs/ -lDownloader -lSingleNetworkAccessManager
+Debug:LIBS +=   -L../../libs/ -lDownloaderd -lSingleNetworkAccessManagerd
 
 
 Debug:TARGET = $$join(TARGET,,,d)

@@ -11,9 +11,14 @@ public:
     explicit Sc2tvStreamsProvider(QObject *parent = 0);
     void get();
 
+private:
+    Downloader d;
+
 signals:
 
 public slots:
+    void downloadError(const QString &error);
+    void streamListDownloaded();
 
 };
 
