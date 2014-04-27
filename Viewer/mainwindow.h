@@ -19,6 +19,8 @@ public:
 private:
     Ui::MainWindow *ui;
     Sc2tvStreamsProvider sc2tvProvider;
+
+private slots:
 };
 
 #endif // MAINWINDOW_H

@@ -17,12 +17,14 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     abstractstreamsprovider.cpp \
     abstractstreamitem.cpp \
-    sc2tvstreamsprovider.cpp
+    sc2tvstreamsprovider.cpp \
+    sc2tvstreamitem.cpp
 
 HEADERS  += mainwindow.h \
     abstractstreamsprovider.h \
     abstractstreamitem.h \
-    sc2tvstreamsprovider.h
+    sc2tvstreamsprovider.h \
+    sc2tvstreamitem.h
 
 FORMS    += mainwindow.ui
 
@@ -36,3 +38,6 @@ Debug:LIBS +=   -L../../libs/ -lDownloaderd -lSingleNetworkAccessManagerd
 
 Debug:TARGET = $$join(TARGET,,,d)
 DESTDIR = ../../bin
+
+OTHER_FILES += \
+    StreamList.qml

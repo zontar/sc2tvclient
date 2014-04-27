@@ -8,12 +8,13 @@ class AbstractStreamItem
 {
 public:
     AbstractStreamItem();
+    AbstractStreamItem(const QVariantMap &map);
     virtual ~AbstractStreamItem();
     QVariant getValue(const QString &name) const;
     void setValue(const QString &name, const QVariant &value);
 
-private:
-    QMap<QString, QVariant> values_;
+protected:
+    QVariantMap values_;
 };
 
 #endif // ABSTRACTSTREAMITEM_H

@@ -4,6 +4,11 @@ AbstractStreamItem::AbstractStreamItem()
 {
 }
 
+AbstractStreamItem::AbstractStreamItem(const QVariantMap &map): values_(map)
+{
+
+}
+
 AbstractStreamItem::~AbstractStreamItem()
 {
 

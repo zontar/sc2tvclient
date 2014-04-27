@@ -2,7 +2,10 @@
 #define SC2TVSTREAMSPROVIDER_H
 
 #include "abstractstreamsprovider.h"
+#include "sc2tvstreamitem.h"
 #include "downloader.h"
+
+#include <QList>
 
 class Sc2tvStreamsProvider : public AbstractStreamsProvider
 {
@@ -12,7 +15,7 @@ public:
     void get();
 
 private:
-    Downloader d;
+    Downloader d_;
 
 signals:
 
