@@ -1,4 +1,7 @@
 #include "abstractstreammodel.h"
+#include "singlenetworkaccessmanager.h"
+#include <QNetworkReply>
+#include <QNetworkRequest>
 
 AbstractStreamModel::AbstractStreamModel(QObject *parent) :
     QAbstractListModel(parent)
@@ -35,6 +38,13 @@ QHash<int, QByteArray> AbstractStreamModel::roleNames() const
     return m_roles;
 }
 
+void AbstractStreamModel::show(const int index)
+{
+    SingleNetworkAccessManager *net = SingleNetworkAccessManager::instance();
+    QNetworkReply *r = net->get(QNetworkRequest(m_items[index].getValue(m_roles[(int)StandartStreamRoles::Url]).toUrl()));
+    connect(r, SIGNAL(finished()), this, SLOT(pageLoaded()));
+}
+
 void AbstractStreamModel::addItem(const AbstractStreamItem &item)
 {
     if(m_items.contains(item)) return;
@@ -42,4 +52,12 @@ void AbstractStreamModel::addItem(const AbstractStreamItem &item)
     beginInsertRows(QModelIndex(),m_items.size(),m_items.size());
     m_items << item;
     endInsertRows();
+}
+
+void AbstractStreamModel::pageLoaded()
+{
+    QNetworkReply *r = qobject_cast<QNetworkReply *>(sender());
+    r->deleteLater();
+    QString page = r->readAll();
+    getPlayerUrl(page);
 }

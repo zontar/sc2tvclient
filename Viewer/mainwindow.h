@@ -26,6 +26,8 @@ private:
     AbstractStreamsProvider *m_provider;
 
 private slots:
+    void foundUrls(const QStringList &urls);
+    void modelError(const QString &description);
 };
 
 #endif // MAINWINDOW_H

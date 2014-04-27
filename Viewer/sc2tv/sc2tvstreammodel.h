@@ -3,6 +3,8 @@
 
 #include "abstractstreammodel.h"
 
+class QJsonObject;
+
 class Sc2tvStreamModel : public AbstractStreamModel
 {
     Q_OBJECT
@@ -23,10 +25,10 @@ protected:
         Timestamp = Qt::UserRole + 11
     };
 
-signals:
-
 public slots:
     const QUrl getRelatedDelegate() const;
+    void getPlayerUrl(const QString &page);
+    QString getUrl(const QJsonObject &jObj);
 };
 
 #endif // SC2TVSTREAMMODEL_H

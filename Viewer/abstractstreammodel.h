@@ -33,10 +33,17 @@ protected:
     QHash<int, QByteArray> m_roles;         //! Список названий свойств модели для использования в qml
 
 signals:
+    void foundUrls(const QStringList &urls);
+    void error(const QString &description);
 
 public slots:
     virtual const QUrl getRelatedDelegate() const = 0;
+    void show(const int index);
     void addItem(const AbstractStreamItem &item);
+    virtual void getPlayerUrl(const QString &page) = 0;
+
+private slots:
+    void pageLoaded();
 };
 
 #endif // ABSTRACTSTREAMMODEL_H

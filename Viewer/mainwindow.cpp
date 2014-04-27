@@ -32,6 +32,8 @@ MainWindow::MainWindow(QWidget *parent) :
     setCentralWidget(sSplitter);
 
     connect(m_provider, SIGNAL(found(AbstractStreamItem)), m_model, SLOT(addItem(AbstractStreamItem)));
+    connect(m_model, SIGNAL(foundUrls(QStringList)), this, SLOT(foundUrls(QStringList)));
+    connect(m_model, SIGNAL(error(QString)), this, SLOT(modelError(QString)));
     m_provider->get();
 
 }
@@ -39,5 +41,15 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
 //    sSplitter->deleteLater();
-//    wStreamList->deleteLater();
+    //    wStreamList->deleteLater();
+}
+
+void MainWindow::foundUrls(const QStringList &urls)
+{
+    qDebug() << urls;
+}
+
+void MainWindow::modelError(const QString &description)
+{
+    qDebug() << description;
 }

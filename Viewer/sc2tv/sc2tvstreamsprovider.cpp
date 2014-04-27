@@ -3,7 +3,6 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QFile>
-#include <QDebug>
 
 Sc2tvStreamsProvider::Sc2tvStreamsProvider(QObject *parent) :
     AbstractStreamsProvider(parent)
@@ -34,18 +33,15 @@ void Sc2tvStreamsProvider::streamListDownloaded()
 
     QJsonParseError  parseError;
     QJsonDocument jdoc = QJsonDocument::fromJson(page, &parseError);
-    qDebug() << jdoc.isNull() << jdoc.isEmpty() << jdoc.isObject() << jdoc.isArray() << parseError.errorString();
     QJsonObject jObj = jdoc.object();
     if(jObj.isEmpty())
     {
-        qDebug() << "Couldn't get streams list";
         emit error("Couldn't get streams list");
         return;
     }
     QJsonArray jArr = jObj.find("streams").value().toArray();
     if(jArr.isEmpty())
     {
-        qDebug() << "Couldn't get streams array";
         emit error("Couldn't get streams array");
         return;
     }
@@ -55,7 +51,8 @@ void Sc2tvStreamsProvider::streamListDownloaded()
         QJsonValue value = *iter;
         if(!value.isObject())
         {
-            qDebug() << "Unexpercted non object item while parse streams array";
+            //ToDo: По факту не ошибка, и сигнал кидать не корректно. Подумать как сделать
+            emit error("Unexpercted non object item while parse streams array");
             continue;
         }
         Sc2tvStreamItem item(value.toObject().toVariantMap());

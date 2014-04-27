@@ -16,13 +16,5 @@ Rectangle {
         delegate: modelDelegate
         clip: true
         orientation: ListView.Horizontal
-        MouseArea
-        {
-            anchors.fill: parent
-            onClicked:
-            {
-                console.log(StreamModel.getRelatedDelegate())
-            }
-        }
     }
 }
