@@ -26,7 +26,7 @@ HEADERS  += mainwindow.h \
     sc2tvstreamsprovider.h \
     sc2tvstreamitem.h
 
-FORMS    += mainwindow.ui
+FORMS    +=
 
 INCLUDEPATH +=  \
                 ../Commons/SingleNetworkAccessManager \

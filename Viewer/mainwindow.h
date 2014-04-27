@@ -4,10 +4,6 @@
 #include <QMainWindow>
 #include "sc2tvstreamsprovider.h"
 
-namespace Ui {
-class MainWindow;
-}
-
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -17,7 +13,6 @@ public:
     ~MainWindow();
 
 private:
-    Ui::MainWindow *ui;
     Sc2tvStreamsProvider sc2tvProvider;
 
 private slots:
